@@ -37,6 +37,19 @@ func main() {
 		os.Exit(1)
 	}
 
+	usd := discordgo.UpdateStatusData{
+		Activities: []*discordgo.Activity{
+			{
+				Name: "Ghaul",
+				Type: 0,
+			},
+		},
+	}
+	err = Session.UpdateStatusComplex(usd)
+	if err != nil {
+		log.Warn("error updating bot status")
+	}
+
 	log.Info("bot is running")
 	log.Info(Session.Identify.Intents)
 	stop := make(chan os.Signal, 1)

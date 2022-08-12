@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"regexp"
 
 	"github.com/bwmarrin/discordgo"
 	log "github.com/sirupsen/logrus"
@@ -10,7 +11,9 @@ import (
 func AddHandlers(s *discordgo.Session) {
 	s.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
 		log.Info(m.Message.Content)
-		// TODO do something with this later
+
+		// Message handlers by channel
+		AlertNewLfgToRaidLfg(s, m)
 	})
 
 	s.AddHandler(func(s *discordgo.Session, m *discordgo.GuildMemberAdd) {
@@ -23,12 +26,12 @@ func AddHandlers(s *discordgo.Session) {
 		}
 		// Send a welcome message
 		// TODO let user configure the channel and the message
-		tc, err := GetChannelByName(c, "bot-tests")
+		tc, err := GetChannelByName(c, "welcome-wagon")
 		if err != nil {
 			log.Warnf("error getting channel name %v")
 		}
 
-		msg := fmt.Sprintf("Hello <@%s>", m.User.ID)
+		msg := fmt.Sprintf("Hello <@%s>, welcome to the ARCH server! Please review <#786618669408976936> and register with <#785909633352466442>", m.User.ID)
 		if !m.User.Bot {
 			SendMessageInChannel(s, tc, msg)
 		}
@@ -56,4 +59,28 @@ func SendMessageInChannel(s *discordgo.Session, c *discordgo.Channel, m string) 
 		return
 	}
 	log.Infof("sent msg %v in channel %v %v", msg.Content, c.Name, id)
+}
+
+// Alert on all new lfgs in lfg-management to raid-lfg
+func AlertNewLfgToRaidLfg(s *discordgo.Session, m *discordgo.MessageCreate) {
+	// IDs:
+	// lfg-list: 940341727007498240
+	// lfg-management: 785978702483292240
+	// raid-lfg: 785972816570613791
+	// hype-emoji: <:hype:798225963422580747>
+	if m.ChannelID == "785978702483292240" {
+		r, _ := regexp.Compile(`LFG Post: \*\*(?P<lfgId>\d+)\*\* created`)
+		res := r.FindStringSubmatch(m.Content) // golang StringSubmatch groups are so awkward
+		if len(res) > 1 {
+			log.Infof("attempting to post lfg id to raid-lfg...")
+			joinId := res[1]
+			c, err := s.Channel("785972816570613791")
+			if err != nil {
+				log.Warnf("error getting raid-lfg channel")
+				return
+			}
+			SendMessageInChannel(s, c, fmt.Sprintf(`<:hype:798225963422580747> @everyone **LFG Alert:** Please use !lfg %v to look up the LFG or go to <#940341727007498240>.  <:hype:798225963422580747>`, joinId))
+		}
+		log.Infof("%v", res)
+	}
 }
