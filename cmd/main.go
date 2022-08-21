@@ -5,6 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/aadithpm/speaker-bot/internal/commands"
 	"github.com/aadithpm/speaker-bot/internal/handlers"
 
 	"github.com/bwmarrin/discordgo"
@@ -30,6 +31,9 @@ func main() {
 	Session.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsAll)
 
 	handlers.AddHandlers(Session)
+
+	commands.AddCommands(Session)
+	commands.AddHandler(Session)
 
 	err := Session.Open()
 	if err != nil {

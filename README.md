@@ -1,12 +1,10 @@
 # The Speaker
 
-### **"The Light lives in all places... In all things... You can block it... Even try to trap it... But the Light will always find its way"**
+> The Light lives in all places... In all things... You can block it... Even try to trap it... But the Light will always find its way
 
-----
 
-## Coming soon:
+Private bot for our Destiny 2 clan. For permission to use this bot or adapt it for your server, please contact me.
 
-- CI
-- Deployment
-- Command List
-
+### Current slash commands
+- `lostsector` - gets Lost Sector data for the current daily reset
+- `nightfall` - gets Nightfall data for the current weekly reset

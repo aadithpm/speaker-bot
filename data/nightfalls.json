@@ -1,0 +1,25 @@
+{
+    "start_date": "2022-08-20T00:00:00.000Z",
+    "rotation_type": "weekly",
+    "gear_list": [
+        "Plug One.1",
+        "Silicon Neuroma",
+        "Horror's Least",
+        "D.F.A"
+    ],
+    "location_list": [
+        "EDZ",
+        "The Moon",
+        "Europa",
+        "Nessus",
+        "The Throne World"
+    ],
+    "rotation": [
+        {
+            "name": "Proving Grounds",
+            "gear": 1,
+            "location": 3,
+            "comments": ""
+        }
+    ]
+}
