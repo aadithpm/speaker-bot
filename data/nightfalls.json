@@ -1,11 +1,12 @@
 {
-    "start_date": "2022-08-20T00:00:00.000Z",
+    "start_date": "2022-08-23T17:00:00.000Z",
     "rotation_type": "weekly",
     "gear_list": [
         "Plug One.1",
         "Silicon Neuroma",
         "Horror's Least",
-        "D.F.A"
+        "D.F.A",
+        "???"
     ],
     "location_list": [
         "EDZ",
@@ -16,9 +17,15 @@
     ],
     "rotation": [
         {
-            "name": "Proving Grounds",
+            "name": "The Glassway",
             "gear": 1,
-            "location": 3,
+            "location": 2,
+            "comments": ""
+        },
+        {
+            "name": "The Lightblade",
+            "gear": 4,
+            "location": 4,
             "comments": ""
         }
     ]

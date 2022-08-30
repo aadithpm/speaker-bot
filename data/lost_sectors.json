@@ -1,11 +1,12 @@
 {
-    "start_date": "2022-08-20T00:00:00.000Z",
+    "start_date": "2022-08-23T17:00:00.000Z",
     "rotation_type": "daily",
     "gear_list": [
-        "Helmet",
-        "Arms",
-        "Legs",
-        "Chest"
+        "Exotic Helmets",
+        "Exotic Gauntlets",
+        "Exotic Legs",
+        "Exotic Chestpieces",
+        "???"
     ],
     "location_list": [
         "EDZ",
@@ -16,8 +17,44 @@
     ],
     "rotation": [
         {
+            "name": "Concealed Void",
+            "gear": 3,
+            "location": 2,
+            "comments": ""
+        },
+        {
+            "name": "Bunker E15",
+            "gear": 0,
+            "location": 2,
+            "comments": ""
+        },
+        {
+            "name": "The Conflux",
+            "gear": 2,
+            "location": 3,
+            "comments": ""
+        },
+        {
+            "name": "The Rift",
+            "gear": 1,
+            "location": 3,
+            "comments": ""
+        },
+        {
             "name": "K1 Crew Quarters",
             "gear": 3,
+            "location": 1,
+            "comments": ""
+        },
+        {
+            "name": "K1 Logistics",
+            "gear": 0,
+            "location": 1,
+            "comments": ""
+        },
+        {
+            "name": "K1 Communion",
+            "gear": 2,
             "location": 1,
             "comments": ""
         }

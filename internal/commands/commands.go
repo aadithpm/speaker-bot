@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/bwmarrin/discordgo"
@@ -10,11 +11,15 @@ import (
 const (
 	LostSector string = "lostsector"
 	Nightfall  string = "nightfall"
+	Coolness   string = "cool"
 )
 
 var commands []SpeakerCommand = []SpeakerCommand{
 	NewLostSectorCommand(),
+	NewNightfallCommand(),
+	NewCoolnessCommand(),
 }
+
 var commandMappings map[string]interface{} = map[string]interface{}{}
 
 func AddCommands(s *discordgo.Session) {
@@ -43,12 +48,12 @@ func AddHandler(s *discordgo.Session) {
 		log.Infof("processing cmd %v in %v channel from %v guild...", data.Name, i.ChannelID, i.GuildID)
 
 		sc := cm.(SpeakerCommand)
-		err := sc.Handler(s, &data)
+		res, err := sc.Handler(s, &data)
 		if err != nil {
 			log.Warnf("error processing command %v: %v", data.Name, err)
-			respondMessage(s, i.Interaction, "Test content: Error")
+			respondMessage(s, i.Interaction, fmt.Sprintf("[error] %v: %v", sc.GetName(), err))
 		}
-		respondMessage(s, i.Interaction, "Test content: Success")
+		respondMessage(s, i.Interaction, res)
 	})
 }
 

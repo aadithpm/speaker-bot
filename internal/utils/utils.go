@@ -2,6 +2,8 @@ package utils
 
 import (
 	"fmt"
+	"math"
+	"time"
 
 	"github.com/bwmarrin/discordgo"
 	log "github.com/sirupsen/logrus"
@@ -29,4 +31,11 @@ func GetChannelByName(c []*discordgo.Channel, n string) (channel *discordgo.Chan
 		}
 	}
 	return nil, fmt.Errorf("channel name %v not found", n)
+}
+
+// GetTimeDifferenceInDays Gets time difference in days between time arg and current time
+func GetTimeDifferenceInDays(t time.Time) (diff int) {
+	currentTime := time.Now()
+	dur := currentTime.Sub(t)
+	return int(math.Floor(dur.Hours() / 24))
 }
