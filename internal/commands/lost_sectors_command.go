@@ -36,9 +36,15 @@ func (l LostSectorCommand) Handler(s *discordgo.Session, d *discordgo.Applicatio
 
 	data := data.ReadRotationData("./data/lost_sectors.json")
 	diff := utils.GetTimeDifferenceInDays(data.StartDate)
-	lost_sector := data.Rotation[diff]
 
-	msg := fmt.Sprintf("Lost Sector for today is **%v** in %v, dropping **%v**. *Warning: Lost Sectors might be out of date until a week into the season*", lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[lost_sector.Gear])
+	if !data.RotationComplete && diff >= len(data.ContentRotation) {
+		return "", fmt.Errorf("today's Lost Sector doesn't have an entry")
+	}
+
+	lost_sector := data.ContentRotation[diff%len(data.ContentRotation)]
+	gear := data.GearRotation[diff%len(data.GearRotation)]
+
+	msg := fmt.Sprintf("Lost Sector for today is **%v** in %v, dropping **%v**. *Warning: Lost Sectors might be out of date until a week into the season*", lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
 
 	return msg, nil
 }

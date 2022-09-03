@@ -1,11 +1,12 @@
 {
     "start_date": "2022-08-23T17:00:00.000Z",
-    "rotation_type": "weekly",
+    "rotation_complete": false,
     "gear_list": [
         "Plug One.1",
         "Silicon Neuroma",
         "Horror's Least",
         "D.F.A",
+        "Mindbender's Ambition",
         "???"
     ],
     "location_list": [
@@ -13,20 +14,29 @@
         "The Moon",
         "Europa",
         "Nessus",
-        "The Throne World"
+        "The Throne World",
+        "The Cosmodrome"
     ],
-    "rotation": [
+    "content_rotation": [
         {
             "name": "The Glassway",
-            "gear": 1,
             "location": 2,
             "comments": ""
         },
         {
             "name": "The Lightblade",
-            "gear": 4,
             "location": 4,
             "comments": ""
+        },
+        {
+            "name": "Fallen S.A.B.E.R",
+            "location": 5,
+            "comments": ""
         }
+    ],
+    "gear_rotation": [
+        1,
+        4,
+        5
     ]
 }

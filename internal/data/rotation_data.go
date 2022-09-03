@@ -10,16 +10,17 @@ import (
 
 type RotationEntry struct {
 	Name     string `json:"name"`
-	Gear     int    `json:"gear"`
 	Location int    `json:"location"`
+	Comments string `json:"comments"`
 }
 
 type RotationData struct {
-	StartDate    time.Time       `json:"start_date"`
-	RotationType string          `json:"rotation_type"`
-	GearList     []string        `json:"gear_list"`
-	LocationList []string        `json:"location_list"`
-	Rotation     []RotationEntry `json:"rotation"`
+	StartDate        time.Time       `json:"start_date"`
+	RotationComplete bool            `json:"rotation_complete"`
+	GearList         []string        `json:"gear_list"`
+	LocationList     []string        `json:"location_list"`
+	ContentRotation  []RotationEntry `json:"content_rotation"`
+	GearRotation     []int           `json:"gear_rotation"`
 }
 
 func ReadRotationData(path string) (data RotationData) {

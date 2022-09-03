@@ -1,6 +1,6 @@
 {
     "start_date": "2022-08-23T17:00:00.000Z",
-    "rotation_type": "daily",
+    "rotation_complete": true,
     "gear_list": [
         "Exotic Helmets",
         "Exotic Gauntlets",
@@ -13,50 +13,70 @@
         "The Moon",
         "Europa",
         "Nessus",
-        "The Throne World"
+        "The Throne World",
+        "Unknown"
     ],
-    "rotation": [
+    "content_rotation": [
         {
             "name": "Concealed Void",
-            "gear": 3,
             "location": 2,
             "comments": ""
         },
         {
             "name": "Bunker E15",
-            "gear": 0,
             "location": 2,
             "comments": ""
         },
         {
             "name": "The Conflux",
-            "gear": 2,
             "location": 3,
             "comments": ""
         },
         {
             "name": "The Rift",
-            "gear": 1,
             "location": 3,
             "comments": ""
         },
         {
             "name": "K1 Crew Quarters",
-            "gear": 3,
             "location": 1,
             "comments": ""
         },
         {
             "name": "K1 Logistics",
-            "gear": 0,
             "location": 1,
             "comments": ""
         },
         {
             "name": "K1 Communion",
-            "gear": 2,
             "location": 1,
             "comments": ""
+        },
+        {
+            "name": "Skydock IV",
+            "location": 0,
+            "comments": ""
+        },
+        {
+            "name": "Scavenger's Den",
+            "location": 0,
+            "comments": ""
+        },
+        {
+            "name": "The Quarry",
+            "location": 0,
+            "comments": ""
+        },
+        {
+            "name": "Excavation Site XII",
+            "location": 0,
+            "comments": ""
         }
+    ],
+    "gear_rotation": [
+        3,
+        0,
+        2,
+        1
     ]
 }
