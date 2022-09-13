@@ -7,6 +7,7 @@
         "Horror's Least",
         "D.F.A",
         "Mindbender's Ambition",
+        "Duty Bound",
         "???"
     ],
     "location_list": [
@@ -28,8 +29,13 @@
             "location": 4,
             "comments": ""
         },
-        {
+        {   
             "name": "Fallen S.A.B.E.R",
+            "location": 5,
+            "comments": ""
+        },
+        {   
+            "name": "The Disgraced",
             "location": 5,
             "comments": ""
         }
@@ -37,6 +43,7 @@
     "gear_rotation": [
         1,
         4,
-        5
+        5,
+        6
     ]
 }
