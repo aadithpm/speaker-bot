@@ -9,13 +9,15 @@ import (
 )
 
 const (
-	LostSector string = "lostsector"
-	Nightfall  string = "nightfall"
-	Coolness   string = "cool"
+	LostSector     string = "lostsector"
+	LostSectorList string = "lostsectorlist"
+	Nightfall      string = "nightfall"
+	Coolness       string = "cool"
 )
 
 var commands []SpeakerCommand = []SpeakerCommand{
 	NewLostSectorCommand(),
+	NewLostSectorListCommand(),
 	NewNightfallCommand(),
 	NewCoolnessCommand(),
 }

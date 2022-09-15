@@ -39,3 +39,9 @@ func GetTimeDifferenceInDays(t time.Time) (diff int) {
 	dur := currentTime.Sub(t)
 	return int(math.Floor(dur.Hours() / 24))
 }
+
+// GetTimeDifferenceInDays Gets time difference in days between args
+func GetTimeDifferenceInDaysFrom(t time.Time, s time.Time) (diff int) {
+	dur := s.Sub(t)
+	return int(math.Floor(dur.Hours() / 24))
+}
