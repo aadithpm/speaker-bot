@@ -33,7 +33,6 @@ func AddCommands(s *discordgo.Session) {
 	guildId := os.Getenv("DISCORD_GUILD_ID")
 	if guildId == "" {
 		log.Warnf("no guild ID found, only processing global commands..")
-		return
 	}
 
 	err := purgeCommands(s, appId, guildId)
