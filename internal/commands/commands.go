@@ -30,6 +30,17 @@ func AddCommands(s *discordgo.Session) {
 		log.Warnf("no bot token found, exiting..")
 		return
 	}
+	guildId := os.Getenv("DISCORD_GUILD_ID")
+	if guildId == "" {
+		log.Warnf("no guild ID found, only processing global commands..")
+		return
+	}
+
+	err := purgeCommands(s, appId, guildId)
+	if err != nil {
+		log.Warnf("error purging previous commands: %v", err)
+	}
+
 	for _, c := range commands {
 		s.ApplicationCommandCreate(appId, "", c.GetCommand())
 		log.Infof("registered %v command", c.GetName())
@@ -73,4 +84,35 @@ func respondMessage(s *discordgo.Session, i *discordgo.Interaction, msg string) 
 			Content: msg,
 		},
 	})
+}
+
+func purgeCommands(s *discordgo.Session, appId string, guildId string) error {
+	guildCmds, err := s.ApplicationCommands(appId, guildId)
+	if err != nil {
+		log.Warnf("error getting guild commands for deletion")
+		return err
+	} else {
+		for _, c := range guildCmds {
+			log.Infof("cleaning up %v guild command", c.Name)
+			err = s.ApplicationCommandDelete(appId, guildId, c.ID)
+			if err != nil {
+				log.Warnf("error deleting %v guild command: %v", c.Name, err)
+			}
+		}
+	}
+	globalCmds, err := s.ApplicationCommands(appId, "")
+	if err != nil {
+		log.Warnf("error getting guild commands for deletion")
+		return err
+	} else {
+		for _, c := range globalCmds {
+			log.Infof("cleaning up %v global command", c.Name)
+			err = s.ApplicationCommandDelete(appId, "", c.ID)
+			if err != nil {
+				log.Warnf("error deleting %v global command: %v", c.Name, err)
+			}
+		}
+	}
+
+	return nil
 }

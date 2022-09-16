@@ -22,9 +22,9 @@ func NewLostSectorListCommand() (l SpeakerCommand) {
 
 func (l LostSectorListCommand) GetCommand() *discordgo.ApplicationCommand {
 	return &discordgo.ApplicationCommand{
-		Name:        LostSector,
+		Name:        LostSectorList,
 		Type:        discordgo.ChatApplicationCommand,
-		Description: "Lost Sector for the day",
+		Description: "Lost Sector list for the week",
 	}
 }
 
@@ -57,7 +57,7 @@ func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.Applic
 		lost_sector := data.ContentRotation[diff%len(data.ContentRotation)]
 		gear := data.GearRotation[diff%len(data.GearRotation)]
 
-		msg := fmt.Sprintf("Lost Sector for %v is **%v** in %v, dropping **%v**.\n\n", date, lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
+		msg := fmt.Sprintf("__%v:__ **%v** in %v, dropping **%v**.\n", date.Weekday(), lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
 		resp = resp + msg
 	}
 	return resp, nil
