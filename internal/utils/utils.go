@@ -25,12 +25,23 @@ func SendMessageInChannel(s *discordgo.Session, c *discordgo.Channel, m string) 
 // GetChannelByName Gets channel by name from list of channels, sets err if not found
 func GetChannelByName(c []*discordgo.Channel, n string) (channel *discordgo.Channel, err error) {
 	for _, channel := range c {
-		log.Infof("channel %v %v %v", channel.Name, channel.ID, channel.Type)
 		if channel.Name == n {
+			log.Infof("found channel %v %v %v", channel.Name, channel.ID, channel.Type)
 			return channel, nil
 		}
 	}
 	return nil, fmt.Errorf("channel name %v not found", n)
+}
+
+// GetChannelById Gets channel by ID from list of channels, sets err if not found
+func GetChannelById(c []*discordgo.Channel, i string) (channel *discordgo.Channel, err error) {
+	for _, channel := range c {
+		if channel.ID == i {
+			log.Infof("found channel %v %v %v", channel.Name, channel.ID, channel.Type)
+			return channel, nil
+		}
+	}
+	return nil, fmt.Errorf("channel ID %v not found", i)
 }
 
 // GetTimeDifferenceInDays Gets time difference in days between time arg and current time

@@ -18,6 +18,7 @@ func AddHandlers(s *discordgo.Session) {
 
 		// Add new handlers here
 		alertAdaToDestinyTalk(s, m)
+		alertFortniteToChannel(s, m)
 	})
 }
 
@@ -73,6 +74,31 @@ func alertAdaToDestinyTalk(s *discordgo.Session, m *discordgo.MessageCreate) {
 			if err != nil {
 				log.Warnf("error sending message for Ada-1 reset: %v", err)
 			}
+		}
+	}
+}
+
+// Spam Pandi when someone says forkknife for the memes
+func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
+	// 313141452991627266
+	msg := `<@313141452991627266> https://tenor.com/view/we-like-fortnite-we-like-fortnite-speed-up-gif-26419282`
+	c, err := s.GuildChannels(m.GuildID)
+	if err != nil {
+		log.Warnf("error getting channels: %v", err)
+	}
+	tc, err := utils.GetChannelById(c, m.ChannelID)
+	if err != nil {
+		log.Warnf("error getting destiny-talk channel: %v", err)
+		return
+	}
+
+	r, _ := regexp.Compile(`(?i)fortnite`)
+	res := r.MatchString(m.Content)
+
+	if res && m.Content != msg {
+		err = utils.SendMessageInChannel(s, tc, msg)
+		if err != nil {
+			log.Warnf("error sending fortnite message: %v", err)
 		}
 	}
 }
