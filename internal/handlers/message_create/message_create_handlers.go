@@ -64,7 +64,7 @@ func alertAdaToDestinyTalk(s *discordgo.Session, m *discordgo.MessageCreate) {
 			if err != nil {
 				log.Warnf("error getting channels: %v", err)
 			}
-			tc, err := utils.GetChannelByName(c, "destiny-talk")
+			tc, err := utils.GetChannelById(c, "785889673691791451")
 			if err != nil {
 				log.Warnf("error getting destiny-talk channel: %v", err)
 				return
