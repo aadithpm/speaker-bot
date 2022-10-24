@@ -1,14 +1,13 @@
 {
     "start_date": "2022-08-23T17:00:00.000Z",
-    "rotation_complete": false,
+    "rotation_complete": true,
     "gear_list": [
-        "Plug One.1",
-        "Silicon Neuroma",
-        "Horror's Least",
         "D.F.A",
         "Mindbender's Ambition",
         "Duty Bound",
         "The Militia's Birthright",
+        "Horror's Least",
+        "Silicon Neuroma",
         "???"
     ],
     "location_list": [
@@ -46,22 +45,17 @@
             "comments": ""
         },
         {   
-            "name": "Exodus Crash",
-            "location": 3,
-            "comments": ""
-        },
-        {   
             "name": "The Devil's Lair",
             "location": 5,
             "comments": ""
         }
     ],
     "gear_rotation": [
+        0,
         1,
+        2,
         3,
         4,
-        5,
-        6,
-        2
+        5
     ]
 }
