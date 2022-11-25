@@ -1,0 +1,34 @@
+{
+    "start_date": "2022-08-23T17:00:00.000Z",
+    "rotation_complete": true,
+    "gear_list": [],
+    "location_list": [
+        "The Moon",
+        "Legends",
+        "Eternity",
+        "Dreaming City"
+    ],
+    "content_rotation": [
+        {
+            "name": "Shattered Throne",
+            "location": 4,
+            "comments": ""
+        },
+        {
+            "name": "Prophecy",
+            "location": 2,
+            "comments": ""
+        },
+        {
+            "name": "Grasp of Avarice",
+            "location": 3,
+            "comments": "Master version is available!"
+        },
+        {
+            "name": "Pit of Heresy",
+            "location": 1,
+            "comments": ""
+        }
+    ],
+    "gear_rotation": []
+}
