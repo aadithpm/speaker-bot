@@ -34,12 +34,9 @@ func (c DungeonCommand) GetName() string {
 func (c DungeonCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, err error) {
 	log.Infof("got command %v from handler", d.Name)
 
-	data := data.ReadFeaturedContentData("./data/dungeons.json")
-	current_week := utils.GetTimeDifferenceInWeeks(data.StartDate)
-	content_count := len(data.ContentRotation)
-	adjusted_week := current_week % content_count
-
-	dungeon := data.ContentRotation[adjusted_week]
+	dungeons := data.ReadFeaturedContentData("./data/dungeons.json")
+	current_week := utils.GetCurrentSeasonWeek()
+	dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
 
 	str := "Featured Dungeon for this week is **%v** at %v."
 	if dungeon.MasterAvailable {

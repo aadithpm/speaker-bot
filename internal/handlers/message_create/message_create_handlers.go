@@ -107,29 +107,28 @@ func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 // Spam Neone when someone mentions Pit of Heresy and it's the dungeon for the week (why do I do this to myself)
 func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
-	data := data.ReadFeaturedContentData("./data/dungeons.json")
-	current_week := utils.GetTimeDifferenceInWeeks(data.StartDate)
-	content_count := len(data.ContentRotation)
-	adjusted_week := current_week % content_count
-	dungeon := data.ContentRotation[adjusted_week]
+	// 313141452991627266 - Neone#0376
+	msg := `<@121042733199523840> Did you know PoH is this week? https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152`
+	
+	r, _ := regexp.Compile(`PoH|(?i)pit of heresy`)
+	res := r.MatchString(m.Content)
 
-	if (dungeon.Name == "Pit of Heresy") {
-		// 313141452991627266 - Neone#0376
-		msg := `<@121042733199523840> Did you know PoH is this week? https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152`
-		c, err := s.GuildChannels(m.GuildID)
-		if err != nil {
-			log.Warnf("error getting channels: %v", err)
-		}
-		tc, err := utils.GetChannelById(c, m.ChannelID)
-		if err != nil {
-			log.Warnf("error getting destiny-talk channel: %v", err)
-			return
-		}
+	if res && m.Content != msg {
+		dungeons := data.ReadFeaturedContentData("./data/dungeons.json")
+		current_week := utils.GetCurrentSeasonWeek()
+		dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
 
-		r, _ := regexp.Compile(`(?i)pit of heresy|poh`)
-		res := r.MatchString(m.Content)
+		if (dungeon.Name == "Pit of Heresy") {
+			c, err := s.GuildChannels(m.GuildID)
+			if err != nil {
+				log.Warnf("error getting channels: %v", err)
+			}
+			tc, err := utils.GetChannelById(c, m.ChannelID)
+			if err != nil {
+				log.Warnf("error getting destiny-talk channel: %v", err)
+				return
+			}
 
-		if res && m.Content != msg {
 			err = utils.SendMessageInChannel(s, tc, msg)
 			if err != nil {
 				log.Warnf("error sending poh message: %v", err)

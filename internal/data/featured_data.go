@@ -3,7 +3,6 @@ package data
 import (
 	"encoding/json"
 	"io/ioutil"
-	"time"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -16,7 +15,6 @@ type FeaturedContentEntry struct {
 }
 
 type FeaturedContentData struct {
-	StartDate        time.Time              `json:"start_date"`
 	ContentRotation  []FeaturedContentEntry `json:"content_rotation"`
 }
 
