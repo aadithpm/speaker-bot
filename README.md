@@ -27,11 +27,11 @@ Current Go Version: [1.18](https://go.dev/dl/)
 9. Save Changes. 
 10. Navigate to "OAth2" >> "URL Generator".
 11. Select the following "SCOPES" (minimal permissions, adjust as necessary):
-* bot
-* applications.commands
+    - bot
+    - applications.commands
 12. Select the following "BOT PERMISSIONS" (minimal permissions, adjust as necessary):
-* Read Messages/View Channels
-* Send Messages
+    - Read Messages/View Channels
+    - Send Messages
 13. Navigate to the generated URL.
 14. Select the desired server and "Continue".
 15. Confirm the selected permissions and "Authorize".
