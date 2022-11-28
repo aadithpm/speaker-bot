@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/aadithpm/speaker-bot/internal/data"
 	"github.com/aadithpm/speaker-bot/internal/utils"
 
 	"github.com/bwmarrin/discordgo"
@@ -19,6 +20,7 @@ func AddHandlers(s *discordgo.Session) {
 		// Add new handlers here
 		alertAdaToDestinyTalk(s, m)
 		alertFortniteToChannel(s, m)
+		alertPoHToChannel(s, m)
 	})
 }
 
@@ -80,7 +82,7 @@ func alertAdaToDestinyTalk(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 // Spam Pandi when someone says forkknife for the memes
 func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// 313141452991627266
+	// 313141452991627266 - ItzPandi#9468
 	msg := `<@313141452991627266> https://tenor.com/view/we-like-fortnite-we-like-fortnite-speed-up-gif-26419282`
 	c, err := s.GuildChannels(m.GuildID)
 	if err != nil {
@@ -99,6 +101,38 @@ func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 		err = utils.SendMessageInChannel(s, tc, msg)
 		if err != nil {
 			log.Warnf("error sending fortnite message: %v", err)
+		}
+	}
+}
+
+// Spam Neone when someone mentions Pit of Heresy and it's the dungeon for the week (why do I do this to myself)
+func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
+	// 313141452991627266 - Neone#0376
+	msg := `<@121042733199523840> Did you know PoH is this week? https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152`
+	
+	r, _ := regexp.Compile(`PoH|(?i)pit of heresy`)
+	res := r.MatchString(m.Content)
+
+	if res && m.Content != msg {
+		dungeons := data.ReadRotationData("./data/dungeons.json")
+		current_week := utils.GetTimeDifferenceInWeeks(dungeons.StartDate)
+		dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
+
+		if (dungeon.Name == "Pit of Heresy") {
+			c, err := s.GuildChannels(m.GuildID)
+			if err != nil {
+				log.Warnf("error getting channels: %v", err)
+			}
+			tc, err := utils.GetChannelById(c, m.ChannelID)
+			if err != nil {
+				log.Warnf("error getting destiny-talk channel: %v", err)
+				return
+			}
+
+			err = utils.SendMessageInChannel(s, tc, msg)
+			if err != nil {
+				log.Warnf("error sending poh message: %v", err)
+			}
 		}
 	}
 }

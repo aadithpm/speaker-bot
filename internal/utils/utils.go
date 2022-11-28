@@ -56,3 +56,8 @@ func GetTimeDifferenceInDaysFrom(t time.Time, s time.Time) (diff int) {
 	dur := s.Sub(t)
 	return int(math.Floor(dur.Hours() / 24))
 }
+
+// GetTimeDifferenceInWeeks Gets the time difference in weeks between time arg and current time
+func GetTimeDifferenceInWeeks(t time.Time) (diff int) {
+	return GetTimeDifferenceInDays(t) / 7
+}

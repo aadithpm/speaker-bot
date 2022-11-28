@@ -35,7 +35,7 @@ func (n NightfallCommand) Handler(s *discordgo.Session, d *discordgo.Application
 	log.Infof("got command %v from handler", d.Name)
 
 	data := data.ReadRotationData("./data/nightfalls.json")
-	diff := utils.GetTimeDifferenceInDays(data.StartDate) / 7
+	diff := utils.GetTimeDifferenceInWeeks(data.StartDate)
 
 	if !data.RotationComplete && diff >= len(data.ContentRotation) {
 		return "", fmt.Errorf("this week's Nightfall doesn't have an entry")
