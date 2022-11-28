@@ -5,7 +5,6 @@ import (
 	"math"
 	"time"
 
-	"github.com/aadithpm/speaker-bot/internal/data"
 	"github.com/bwmarrin/discordgo"
 	log "github.com/sirupsen/logrus"
 )
@@ -61,9 +60,4 @@ func GetTimeDifferenceInDaysFrom(t time.Time, s time.Time) (diff int) {
 // GetTimeDifferenceInWeeks Gets the time difference in weeks between time arg and current time
 func GetTimeDifferenceInWeeks(t time.Time) (diff int) {
 	return GetTimeDifferenceInDays(t) / 7
-}
-
-// GetCurrentSeasonWeek Gets the current week number of the season
-func GetCurrentSeasonWeek() (week int) {
-	return GetTimeDifferenceInWeeks(data.ReadSeasonData("./data/season.json").StartDate)
 }

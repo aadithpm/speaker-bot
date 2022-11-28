@@ -114,8 +114,8 @@ func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 	res := r.MatchString(m.Content)
 
 	if res && m.Content != msg {
-		dungeons := data.ReadFeaturedContentData("./data/dungeons.json")
-		current_week := utils.GetCurrentSeasonWeek()
+		dungeons := data.ReadRotationData("./data/dungeons.json")
+		current_week := utils.GetTimeDifferenceInWeeks(dungeons.StartDate)
 		dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
 
 		if (dungeon.Name == "Pit of Heresy") {

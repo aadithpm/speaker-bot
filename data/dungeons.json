@@ -1,26 +1,33 @@
 {
+    "start_date": "2022-08-23T17:00:00.000Z",
+    "location_list": [
+        "Dreaming City",
+        "The Moon",
+        "Legends",
+        "Eternity"
+    ],
     "content_rotation": [
         {
             "name": "Shattered Throne",
-            "location": "Dreaming City",
+            "location": 0,
             "master_available": false,
             "comments": ""
         },
         {
             "name": "Pit of Heresy",
-            "location": "The Moon",
+            "location": 1,
             "master_available": false,
             "comments": ""
         },
         {
             "name": "Prophecy",
-            "location": "Legends",
+            "location": 2,
             "master_available": false,
             "comments": ""
         },
         {
             "name": "Grasp of Avarice",
-            "location": "Eternity",
+            "location": 3,
             "master_available": true,
             "comments": ""
         }
