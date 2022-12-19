@@ -1,5 +1,5 @@
 {
-    "start_date": "2022-08-23T17:00:00.000Z",
+    "start_date": "2022-12-06T17:00:00.000Z",
     "rotation_complete": true,
     "gear_list": [
         "Exotic Helmets",
@@ -14,27 +14,13 @@
         "Europa",
         "Nessus",
         "The Throne World",
+        "The Dreaming City",
         "Unknown"
     ],
     "content_rotation": [
         {
-            "name": "Concealed Void",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "Bunker E15",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "Perdition",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "The Conflux",
-            "location": 3,
+            "name": "K1 Logistics",
+            "location": 1,
             "comments": ""
         },
         {
@@ -43,7 +29,7 @@
             "comments": ""
         },
         {
-            "name": "K1 Logistics",
+            "name": "K1 Revelation",
             "location": 1,
             "comments": ""
         },
@@ -53,23 +39,38 @@
             "comments": ""
         },
         {
-            "name": "Skydock IV",
-            "location": 0,
+            "name": "Bunker E15",
+            "location": 2,
             "comments": ""
         },
         {
-            "name": "Scavenger's Den",
-            "location": 0,
+            "name": "Concealed Void",
+            "location": 2,
             "comments": ""
         },
         {
-            "name": "The Quarry",
-            "location": 0,
+            "name": "Perdition",
+            "location": 2,
             "comments": ""
         },
         {
-            "name": "Excavation Site XII",
-            "location": 0,
+            "name": "Sepulcher",
+            "location": 4,
+            "comments": ""
+        },
+        {
+            "name": "Extraction",
+            "location": 4,
+            "comments": ""
+        },
+        {
+            "name": "Chamber of Starlight",
+            "location": 5,
+            "comments": ""
+        },
+        {
+            "name": "Aphelion's Rest",
+            "location": 5,
             "comments": ""
         }
     ],
