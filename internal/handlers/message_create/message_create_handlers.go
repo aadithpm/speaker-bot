@@ -18,7 +18,10 @@ func AddHandlers(s *discordgo.Session) {
 		log.Info(m.Message.Content)
 
 		// Add new handlers here
-		alertAdaToDestinyTalk(s, m)
+
+		// Disable mod alerts for now
+		// alertAdaToDestinyTalk(s, m)
+
 		alertFortniteToChannel(s, m)
 		alertPoHToChannel(s, m)
 	})
@@ -109,16 +112,16 @@ func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// 313141452991627266 - Neone#0376
 	msg := `<@121042733199523840> Did you know PoH is this week? https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152`
-	
+
 	r, _ := regexp.Compile(`PoH|(?i)pit of heresy`)
 	res := r.MatchString(m.Content)
 
 	if res && m.Content != msg {
 		dungeons := data.ReadRotationData("./data/dungeons.json")
 		current_week := utils.GetTimeDifferenceInWeeks(dungeons.StartDate)
-		dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
+		dungeon := dungeons.ContentRotation[current_week%len(dungeons.ContentRotation)]
 
-		if (dungeon.Name == "Pit of Heresy") {
+		if dungeon.Name == "Pit of Heresy" {
 			c, err := s.GuildChannels(m.GuildID)
 			if err != nil {
 				log.Warnf("error getting channels: %v", err)
