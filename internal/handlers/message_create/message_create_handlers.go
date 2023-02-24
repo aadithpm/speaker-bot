@@ -3,7 +3,6 @@ package message_create
 import (
 	"fmt"
 	"regexp"
-	"strings"
 
 	"github.com/aadithpm/speaker-bot/internal/data"
 	"github.com/aadithpm/speaker-bot/internal/utils"
@@ -12,88 +11,44 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// #oxides-bot-playground
+const BotPlaygroundChannel = "832796289342242817"
+
+// ItzPandi#9468
+const PandiUserId = "313141452991627266"
+
+// Neone#0376
+const NeoneUserId = "121042733199523840"
+
+// Pikachu face GIF
+const PikachuGif = "https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152"
+
+// Fortnite GIF
+const FortniteGif = "https://tenor.com/view/we-like-fortnite-we-like-fortnite-speed-up-gif-26419282"
+
 // AddHandlers add handlers for MessageCreate, fires when a new message is sent on the server
 func AddHandlers(s *discordgo.Session) {
 	s.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
 		log.Info(m.Message.Content)
 
 		// Add new handlers here
-
-		// Disable mod alerts for now
-		// alertAdaToDestinyTalk(s, m)
+		// test in #oxides-bot-playground - 832796289342242817
 
 		alertFortniteToChannel(s, m)
 		alertPoHToChannel(s, m)
 	})
 }
 
-// Alert on specific mods to destiny-talk
-func alertAdaToDestinyTalk(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// IDs:
-	// daily-reset: 785932523028873277
-	// destiny-talk: 785889673691791451
-	// hype-emoji: <:hype:798225963422580747>
-	if m.ChannelID == "785932523028873277" && len(m.Embeds) > 0 {
-		for _, e := range m.Embeds {
-			var mods []string
-			if e.Title == "Ada-1, Armor Synthesis" {
-				log.Infof("found Ada-1 embed, attempting to check for mods...")
-				for _, f := range e.Fields {
-					if f.Name == "Daily Mods" {
-						mods = strings.Split(f.Value, "\n")
-					}
-				}
-			}
-
-			var fMods []string
-			for _, m := range mods {
-				r, _ := regexp.Compile(`([eE]lemental [wW]ell|[cC]harged [wW]ith [lL]ight|[wW]armind [cC]ell)\s*`)
-				res := r.MatchString(m)
-				if res {
-					m = strings.TrimSpace(m)
-					fMods = append(fMods, m)
-				}
-			}
-
-			if len(fMods) == 0 {
-				log.Infof("Ada-1 is not selling any interesting mods today")
-				return
-			}
-
-			for i, f := range fMods {
-				fMods[i] = fmt.Sprintf("**%v**", f)
-			}
-			mMods := strings.Join(fMods[:], ", ")
-
-			c, err := s.GuildChannels(m.GuildID)
-			if err != nil {
-				log.Warnf("error getting channels: %v", err)
-			}
-			tc, err := utils.GetChannelById(c, "785889673691791451")
-			if err != nil {
-				log.Warnf("error getting destiny-talk channel: %v", err)
-				return
-			}
-
-			err = utils.SendMessageInChannel(s, tc, fmt.Sprintf(`Ada-1 is selling %v until tomorrow's reset.`, mMods))
-			if err != nil {
-				log.Warnf("error sending message for Ada-1 reset: %v", err)
-			}
-		}
-	}
-}
-
 // Spam Pandi when someone says forkknife for the memes
 func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// 313141452991627266 - ItzPandi#9468
-	msg := `<@313141452991627266> https://tenor.com/view/we-like-fortnite-we-like-fortnite-speed-up-gif-26419282`
+	msg := fmt.Sprintf(`<@%v> %v`, PandiUserId, FortniteGif)
 	c, err := s.GuildChannels(m.GuildID)
 	if err != nil {
 		log.Warnf("error getting channels: %v", err)
 	}
 	tc, err := utils.GetChannelById(c, m.ChannelID)
 	if err != nil {
-		log.Warnf("error getting destiny-talk channel: %v", err)
+		log.Warnf("error getting channel to msg: %v", err)
 		return
 	}
 
@@ -110,8 +65,7 @@ func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 // Spam Neone when someone mentions Pit of Heresy and it's the dungeon for the week (why do I do this to myself)
 func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
-	// 313141452991627266 - Neone#0376
-	msg := `<@121042733199523840> Did you know PoH is this week? https://tenor.com/view/pikachu-shocked-face-stunned-pokemon-shocked-not-shocked-omg-gif-24112152`
+	msg := fmt.Sprintf(`<@%v> Did you know PoH is this week? %v`, NeoneUserId, PikachuGif)
 
 	r, _ := regexp.Compile(`PoH|(?i)pit of heresy`)
 	res := r.MatchString(m.Content)

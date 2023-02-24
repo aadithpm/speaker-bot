@@ -44,7 +44,7 @@ func (l LostSectorCommand) Handler(s *discordgo.Session, d *discordgo.Applicatio
 	lost_sector := data.ContentRotation[diff%len(data.ContentRotation)]
 	gear := data.GearRotation[diff%len(data.GearRotation)]
 
-	msg := fmt.Sprintf("Lost Sector for today is **%v** in %v, dropping **%v**.", lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
+	msg := fmt.Sprintf("**WARNING: Nightfall data will be inaccurate from the release of Lightfall until the end of March.** Lost Sector for today is **%v** in %v, dropping **%v**.", lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
 
 	return msg, nil
 }

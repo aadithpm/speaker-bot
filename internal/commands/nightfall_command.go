@@ -44,7 +44,7 @@ func (n NightfallCommand) Handler(s *discordgo.Session, d *discordgo.Application
 	nightfall := data.ContentRotation[diff%len(data.ContentRotation)]
 	gear := data.GearRotation[diff%len(data.GearRotation)]
 
-	msg := fmt.Sprintf("Nightfall for this week is **%v** in %v, dropping **%v**.", nightfall.Name, data.LocationList[nightfall.Location], data.GearList[gear])
+	msg := fmt.Sprintf("**WARNING: Nightfall data will be inaccurate from the release of Lightfall until the end of March.** Nightfall for this week is **%v** in %v, dropping **%v**.", nightfall.Name, data.LocationList[nightfall.Location], data.GearList[gear])
 
 	return msg, nil
 }
