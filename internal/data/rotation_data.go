@@ -9,10 +9,11 @@ import (
 )
 
 type RotationEntry struct {
-	Name             string `json:"name"`
-	Location         int    `json:"location"`
-	Comments         string `json:"comments"`
-	MasterAvailable  bool   `json:"master_available,omitempty"`
+	Name            string `json:"name"`
+	Location        int    `json:"location"`
+	Comments        string `json:"comments"`
+	MasterAvailable bool   `json:"master_available,omitempty"`
+	Craftable       bool   `json:"craftable,omitempty"`
 }
 
 type RotationData struct {

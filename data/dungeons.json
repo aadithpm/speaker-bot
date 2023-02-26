@@ -8,18 +8,6 @@
     ],
     "content_rotation": [
         {
-            "name": "Shattered Throne",
-            "location": 0,
-            "master_available": false,
-            "comments": ""
-        },
-        {
-            "name": "Pit of Heresy",
-            "location": 1,
-            "master_available": false,
-            "comments": ""
-        },
-        {
             "name": "Prophecy",
             "location": 2,
             "master_available": false,
@@ -36,6 +24,18 @@
             "location": 1,
             "master_available": true,
             "comments": ""
-        }
+        },
+        {
+            "name": "Shattered Throne",
+            "location": 0,
+            "master_available": false,
+            "comments": ""
+        },
+        {
+            "name": "Pit of Heresy",
+            "location": 1,
+            "master_available": false,
+            "comments": ""
+        }        
     ]
 }

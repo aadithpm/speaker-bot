@@ -12,7 +12,8 @@ const (
 	LostSector     string = "lostsector"
 	LostSectorList string = "lostsectorlist"
 	Nightfall      string = "nightfall"
-	Dungeon	       string = "dungeon"
+	Dungeon        string = "dungeon"
+	Raid           string = "raid"
 	Coolness       string = "cool"
 )
 
@@ -21,6 +22,7 @@ var commands []SpeakerCommand = []SpeakerCommand{
 	NewLostSectorListCommand(),
 	NewNightfallCommand(),
 	NewDungeonCommand(),
+	NewRaidCommand(),
 	NewCoolnessCommand(),
 }
 
