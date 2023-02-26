@@ -9,6 +9,7 @@ Private bot for our Destiny 2 clan. For permission to use this bot or adapt it f
 - `lostsectorlist` - gets Lost Sector data for the next 5 days
 - `nightfall` - gets Nightfall data for the current weekly reset
 - `dungeon` - gets featured Dungeon data for the current weekly reset
+- `raid` - gets featured Raid data for the current weekly reset
 
 ## Local Dev Setup
 

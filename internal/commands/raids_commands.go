@@ -43,7 +43,11 @@ func (c RaidCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationComma
 		str += " with Master difficulty"
 	}
 	if raid.Craftable {
-		str += " and craftable weapons"
+		if raid.MasterAvailable {
+			str += " and craftable weapons"
+		} else {
+			str += " with craftable weapons"
+		}
 	}
 	str += "."
 
