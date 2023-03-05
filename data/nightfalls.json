@@ -1,14 +1,28 @@
 {
-    "start_date": "2022-08-23T17:00:00.000Z",
-    "rotation_complete": true,
+    "start_date": "2023-02-28T17:00:00.000Z",
+    "rotation_complete": false,
     "gear_list": [
-        "D.F.A",
+        "Hung Jury SR4",
         "Mindbender's Ambition",
         "Duty Bound",
         "The Militia's Birthright",
         "Horror's Least",
         "Silicon Neuroma",
         "???"
+    ],
+    "element_list": [
+        "Void",
+        "Arc",
+        "Solar",
+        "Stasis",
+        "Strand"
+    ],
+    "champion_list": [
+        "Overload",
+        "Barrier",
+        "Unstoppable",
+        "Tormentors",
+        "Hive Guardians"
     ],
     "location_list": [
         "EDZ",
@@ -20,34 +34,12 @@
     ],
     "content_rotation": [
         {
-            "name": "The Glassway",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "The Lightblade",
-            "location": 4,
-            "comments": ""
-        },
-        {   
-            "name": "Fallen S.A.B.E.R",
-            "location": 5,
-            "comments": ""
-        },
-        {   
-            "name": "The Disgraced",
-            "location": 5,
-            "comments": ""
-        },
-        {   
-            "name": "Exodus Crash",
+            "name": "Proving Grounds",
             "location": 3,
-            "comments": ""
-        },
-        {   
-            "name": "The Devil's Lair",
-            "location": 5,
-            "comments": ""
+            "comments": "",
+            "threat": 2,
+            "shields": [0, 1, 2],
+            "champions": [1, 2]
         }
     ],
     "gear_rotation": [

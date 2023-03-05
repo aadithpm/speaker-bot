@@ -1,12 +1,26 @@
 {
-    "start_date": "2022-12-06T17:00:00.000Z",
-    "rotation_complete": true,
+    "start_date": "2023-02-28T17:00:00.000Z",
+    "rotation_complete": false,
     "gear_list": [
         "Exotic Chestpieces",
         "Exotic Helmets",
         "Exotic Legs",
         "Exotic Gauntlets",
         "???"
+    ],
+    "element_list": [
+        "Void",
+        "Arc",
+        "Solar",
+        "Stasis",
+        "Strand"
+    ],
+    "champion_list": [
+        "Overload",
+        "Barrier",
+        "Unstoppable",
+        "Tormentors",
+        "Hive Guardians"
     ],
     "location_list": [
         "EDZ",
@@ -15,69 +29,55 @@
         "Nessus",
         "The Throne World",
         "The Dreaming City",
-        "Unknown"
-    ],
-    "content_rotation": [
-        {
-            "name": "K1 Logistics",
-            "location": 1,
-            "comments": ""
-        },
-        {
-            "name": "K1 Crew Quarters",
-            "location": 1,
-            "comments": ""
-        },
-        {
-            "name": "K1 Revelation",
-            "location": 1,
-            "comments": ""
-        },
-        {
-            "name": "K1 Communion",
-            "location": 1,
-            "comments": ""
-        },
-        {
-            "name": "Bunker E15",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "Concealed Void",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "Perdition",
-            "location": 2,
-            "comments": ""
-        },
-        {
-            "name": "Sepulcher",
-            "location": 4,
-            "comments": ""
-        },
-        {
-            "name": "Extraction",
-            "location": 4,
-            "comments": ""
-        },
-        {
-            "name": "Chamber of Starlight",
-            "location": 5,
-            "comments": ""
-        },
-        {
-            "name": "Aphelion's Rest",
-            "location": 5,
-            "comments": ""
-        }
+        "Unknown",
+        "Neomuna"
     ],
     "gear_rotation": [
         0,
         1,
         2,
         3
+    ],
+    "content_rotation": [
+        {
+            "name": "Thrilladome",
+            "location": 7,
+            "comments": "",
+            "threat": 0,
+            "shields": [0, 1],
+            "champions": [0, 1]
+        },
+        {
+            "name": "Hydroponics Delta",
+            "location": 7,
+            "comments": "",
+            "threat": 0,
+            "shields": [],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Gilded Percept",
+            "location": 7,
+            "comments": "",
+            "threat": 1,
+            "shields": [0, 2],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Excavation Site XII",
+            "location": 0,
+            "comments": "",
+            "threat": 2,
+            "shields": [1],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Skydock IV",
+            "location": 0,
+            "comments": "",
+            "threat": 2,
+            "shields": [0],
+            "champions": [1, 2]
+        }
     ]
 }
