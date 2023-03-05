@@ -51,7 +51,7 @@ func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.Applic
 		diff := utils.GetTimeDifferenceInDaysFrom(data.StartDate, date)
 
 		if !data.RotationComplete && diff >= len(data.ContentRotation) {
-			return "", nil, fmt.Errorf("today's Lost Sector doesn't have an entry")
+			return "", nil, fmt.Errorf("lost sector list is not complete")
 		}
 
 		lost_sector := data.ContentRotation[diff%len(data.ContentRotation)]

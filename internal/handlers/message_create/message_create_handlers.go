@@ -30,7 +30,6 @@ const FortniteGif = "https://tenor.com/view/we-like-fortnite-we-like-fortnite-sp
 func AddHandlers(s *discordgo.Session) {
 	s.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
 		log.Info(m.Message.Content)
-		log.Info(m.Message.Type)
 
 		// Add new handlers here
 		// test in #oxides-bot-playground - 832796289342242817

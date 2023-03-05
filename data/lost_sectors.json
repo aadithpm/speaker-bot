@@ -78,6 +78,14 @@
             "threat": 2,
             "shields": [0],
             "champions": [1, 2]
+        },
+        {
+            "name": "The Quarry",
+            "location": 0,
+            "comments": "",
+            "threat": 0,
+            "shields": [0, 2],
+            "champions": [1, 2]
         }
     ]
 }
