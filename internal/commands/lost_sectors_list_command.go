@@ -32,7 +32,7 @@ func (l LostSectorListCommand) GetName() string {
 	return l.Name
 }
 
-func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, err error) {
+func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, emb *discordgo.MessageEmbed, err error) {
 	log.Infof("got command %v from handler", d.Name)
 
 	dates := []time.Time{
@@ -51,7 +51,7 @@ func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.Applic
 		diff := utils.GetTimeDifferenceInDaysFrom(data.StartDate, date)
 
 		if !data.RotationComplete && diff >= len(data.ContentRotation) {
-			return "", fmt.Errorf("today's Lost Sector doesn't have an entry")
+			return "", nil, fmt.Errorf("today's Lost Sector doesn't have an entry")
 		}
 
 		lost_sector := data.ContentRotation[diff%len(data.ContentRotation)]
@@ -60,5 +60,5 @@ func (l LostSectorListCommand) Handler(s *discordgo.Session, d *discordgo.Applic
 		msg := fmt.Sprintf("__%v:__ **%v** in %v, dropping **%v**.\n", date.Weekday(), lost_sector.Name, data.LocationList[lost_sector.Location], data.GearList[gear])
 		resp = resp + msg
 	}
-	return resp, nil
+	return resp, nil, nil
 }

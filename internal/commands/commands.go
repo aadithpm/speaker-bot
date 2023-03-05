@@ -64,12 +64,16 @@ func AddHandler(s *discordgo.Session) {
 		log.Infof("processing cmd %v in %v channel from %v guild...", data.Name, i.ChannelID, i.GuildID)
 
 		sc := cm.(SpeakerCommand)
-		res, err := sc.Handler(s, &data)
+		res, emb, err := sc.Handler(s, &data)
 		if err != nil {
 			log.Warnf("error processing command %v: %v", data.Name, err)
 			respondMessage(s, i.Interaction, fmt.Sprintf("[error] %v: %v", sc.GetName(), err))
+		} else if emb != nil {
+			log.Infof("sending embed for %v", data.Name)
+			respondEmbed(s, i.Interaction, emb)
+		} else {
+			respondMessage(s, i.Interaction, res)
 		}
-		respondMessage(s, i.Interaction, res)
 	})
 }
 
@@ -85,6 +89,16 @@ func respondMessage(s *discordgo.Session, i *discordgo.Interaction, msg string) 
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Content: msg,
+		},
+	})
+}
+
+func respondEmbed(s *discordgo.Session, i *discordgo.Interaction, e *discordgo.MessageEmbed) {
+	s.InteractionRespond(i, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Embeds: []*discordgo.MessageEmbed{e},
+			Flags:  discordgo.MessageFlagsEphemeral,
 		},
 	})
 }

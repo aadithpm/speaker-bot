@@ -30,6 +30,7 @@ const FortniteGif = "https://tenor.com/view/we-like-fortnite-we-like-fortnite-sp
 func AddHandlers(s *discordgo.Session) {
 	s.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
 		log.Info(m.Message.Content)
+		log.Info(m.Message.Type)
 
 		// Add new handlers here
 		// test in #oxides-bot-playground - 832796289342242817
@@ -42,20 +43,20 @@ func AddHandlers(s *discordgo.Session) {
 // Spam Pandi when someone says forkknife for the memes
 func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 	msg := fmt.Sprintf(`<@%v> %v`, PandiUserId, FortniteGif)
-	c, err := s.GuildChannels(m.GuildID)
-	if err != nil {
-		log.Warnf("error getting channels: %v", err)
-	}
-	tc, err := utils.GetChannelById(c, m.ChannelID)
-	if err != nil {
-		log.Warnf("error getting channel to msg: %v", err)
-		return
-	}
-
 	r, _ := regexp.Compile(`(?i)fortnite`)
 	res := r.MatchString(m.Content)
 
-	if res && m.Content != msg {
+	if res && m.Content != msg && m.Type != discordgo.MessageTypeChatInputCommand {
+		c, err := s.GuildChannels(m.GuildID)
+		if err != nil {
+			log.Warnf("error getting channels: %v", err)
+		}
+		tc, err := utils.GetChannelById(c, m.ChannelID)
+		if err != nil {
+			log.Warnf("error getting channel to msg: %v", err)
+			return
+		}
+
 		err = utils.SendMessageInChannel(s, tc, msg)
 		if err != nil {
 			log.Warnf("error sending fortnite message: %v", err)
@@ -70,7 +71,7 @@ func alertPoHToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 	r, _ := regexp.Compile(`PoH|(?i)pit of heresy`)
 	res := r.MatchString(m.Content)
 
-	if res && m.Content != msg {
+	if res && m.Content != msg && m.Type != discordgo.MessageTypeChatInputCommand {
 		dungeons := data.ReadRotationData("./data/dungeons.json")
 		current_week := utils.GetTimeDifferenceInWeeks(dungeons.StartDate)
 		dungeon := dungeons.ContentRotation[current_week%len(dungeons.ContentRotation)]

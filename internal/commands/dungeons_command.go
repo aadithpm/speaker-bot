@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aadithpm/speaker-bot/internal/data"
 	"github.com/aadithpm/speaker-bot/internal/utils"
@@ -31,23 +32,43 @@ func (c DungeonCommand) GetName() string {
 	return c.Name
 }
 
-func (c DungeonCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, err error) {
+func (c DungeonCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, emb *discordgo.MessageEmbed, err error) {
 	log.Infof("got command %v from handler", d.Name)
 
 	dungeons := data.ReadRotationData("./data/dungeons.json")
 	current_week := utils.GetTimeDifferenceInWeeks(dungeons.StartDate)
-	dungeon := dungeons.ContentRotation[current_week % len(dungeons.ContentRotation)]
 
-	str := "Featured Dungeon for this week is **%v** at %v."
-	if dungeon.MasterAvailable {
-		str += " Master difficulty is available!"
+	dungeon := dungeons.ContentRotation[current_week%len(dungeons.ContentRotation)]
+
+	master := "✅"
+	if !dungeon.MasterAvailable {
+		master = "❌"
 	}
 
-	msg := fmt.Sprintf(
-		str,
-		dungeon.Name,
-		dungeons.LocationList[dungeon.Location],
-	)
+	craftable := "✅"
+	if !dungeon.Craftable {
+		craftable = "❌"
+	}
 
-	return msg, nil
+	embed := &discordgo.MessageEmbed{
+		Author:      &discordgo.MessageEmbedAuthor{},
+		Color:       0x284030,
+		Description: fmt.Sprintf("%v", dungeons.LocationList[dungeon.Location]),
+		Fields: []*discordgo.MessageEmbedField{
+			{
+				Name:   "Master",
+				Value:  master,
+				Inline: true,
+			},
+			{
+				Name:   "Craftable",
+				Value:  craftable,
+				Inline: true,
+			},
+		},
+		Timestamp: time.Now().Format(time.RFC3339),
+		Title:     dungeon.Name,
+	}
+
+	return "", embed, nil
 }

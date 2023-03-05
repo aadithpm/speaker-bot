@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aadithpm/speaker-bot/internal/data"
 	"github.com/aadithpm/speaker-bot/internal/utils"
@@ -31,31 +32,43 @@ func (c RaidCommand) GetName() string {
 	return c.Name
 }
 
-func (c RaidCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, err error) {
+func (c RaidCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, emb *discordgo.MessageEmbed, err error) {
 	log.Infof("got command %v from handler", d.Name)
 
 	raids := data.ReadRotationData("./data/raids.json")
 	current_week := utils.GetTimeDifferenceInWeeks(raids.StartDate)
+
 	raid := raids.ContentRotation[current_week%len(raids.ContentRotation)]
 
-	str := "Featured Raid for this week is **%v** at %v"
-	if raid.MasterAvailable {
-		str += " with Master difficulty"
+	master := "✅"
+	if !raid.MasterAvailable {
+		master = "❌"
 	}
-	if raid.Craftable {
-		if raid.MasterAvailable {
-			str += " and craftable weapons"
-		} else {
-			str += " with craftable weapons"
-		}
+
+	craftable := "✅"
+	if !raid.Craftable {
+		craftable = "❌"
 	}
-	str += "."
 
-	msg := fmt.Sprintf(
-		str,
-		raid.Name,
-		raids.LocationList[raid.Location],
-	)
+	embed := &discordgo.MessageEmbed{
+		Author:      &discordgo.MessageEmbedAuthor{},
+		Color:       0x284030,
+		Description: fmt.Sprintf("%v", raids.LocationList[raid.Location]),
+		Fields: []*discordgo.MessageEmbedField{
+			{
+				Name:   "Master",
+				Value:  master,
+				Inline: true,
+			},
+			{
+				Name:   "Craftable",
+				Value:  craftable,
+				Inline: true,
+			},
+		},
+		Timestamp: time.Now().Format(time.RFC3339),
+		Title:     raid.Name,
+	}
 
-	return msg, nil
+	return "", embed, nil
 }

@@ -26,9 +26,9 @@ func (c CoolnessCommand) GetName() string {
 	return c.Name
 }
 
-func (c CoolnessCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, err error) {
+func (c CoolnessCommand) Handler(s *discordgo.Session, d *discordgo.ApplicationCommandInteractionData) (res string, emb *discordgo.MessageEmbed, err error) {
 
 	msg := "https://docs.google.com/spreadsheets/d/1MX9pq6kedcJ_1tRGGeWIsp4GJgq2AnJLn8DcpgX9w48"
 
-	return msg, nil
+	return msg, nil, nil
 }
