@@ -120,9 +120,9 @@ func (v *VoiceConnection) ChangeChannel(channelID string, mute, deaf bool) (err 
 	v.log(LogInformational, "called")
 
 	data := voiceChannelJoinOp{4, voiceChannelJoinData{&v.GuildID, &channelID, mute, deaf}}
-	v.wsMutex.Lock()
+	v.session.wsMutex.Lock()
 	err = v.session.wsConn.WriteJSON(data)
-	v.wsMutex.Unlock()
+	v.session.wsMutex.Unlock()
 	if err != nil {
 		return
 	}
@@ -304,7 +304,7 @@ func (v *VoiceConnection) open() (err error) {
 	// Connect to VoiceConnection Websocket
 	vg := "wss://" + strings.TrimSuffix(v.endpoint, ":80")
 	v.log(LogInformational, "connecting to voice endpoint %s", vg)
-	v.wsConn, _, err = websocket.DefaultDialer.Dial(vg, nil)
+	v.wsConn, _, err = v.session.Dialer.Dial(vg, nil)
 	if err != nil {
 		v.log(LogWarning, "error connecting to voice endpoint %s, %s", vg, err)
 		v.log(LogDebug, "voice struct: %#v\n", v)
@@ -323,7 +323,9 @@ func (v *VoiceConnection) open() (err error) {
 	}
 	data := voiceHandshakeOp{0, voiceHandshakeData{v.GuildID, v.UserID, v.sessionID, v.token}}
 
+	v.wsMutex.Lock()
 	err = v.wsConn.WriteJSON(data)
+	v.wsMutex.Unlock()
 	if err != nil {
 		v.log(LogWarning, "error sending init packet, %s", err)
 		return
@@ -357,6 +359,25 @@ func (v *VoiceConnection) wsListen(wsConn *websocket.Conn, close <-chan struct{}
 				v.Lock()
 				v.wsConn = nil
 				v.Unlock()
+
+				// Wait for VOICE_SERVER_UPDATE.
+				// When the bot is moved by the user to another voice channel,
+				// VOICE_SERVER_UPDATE is received after the code 4014.
+				for i := 0; i < 5; i++ { // TODO: temp, wait for VoiceServerUpdate.
+					<-time.After(1 * time.Second)
+
+					v.RLock()
+					reconnected := v.wsConn != nil
+					v.RUnlock()
+					if !reconnected {
+						continue
+					}
+					v.log(LogInformational, "successfully reconnected after 4014 manual disconnection")
+					return
+				}
+
+				// When VOICE_SERVER_UPDATE is not received, disconnect as usual.
+				v.log(LogInformational, "disconnect due to 4014 manual disconnection")
 
 				v.session.Lock()
 				delete(v.session.VoiceConnections, v.GuildID)
@@ -829,7 +850,12 @@ func (v *VoiceConnection) opusReceiver(udpConn *net.UDPConn, close <-chan struct
 		p.SSRC = binary.BigEndian.Uint32(recvbuf[8:12])
 		// decrypt opus data
 		copy(nonce[:], recvbuf[0:12])
-		p.Opus, _ = secretbox.Open(nil, recvbuf[12:rlen], &nonce, &v.op4.SecretKey)
+
+		if opus, ok := secretbox.Open(nil, recvbuf[12:rlen], &nonce, &v.op4.SecretKey); ok {
+			p.Opus = opus
+		} else {
+			continue
+		}
 
 		// extension bit set, and not a RTCP packet
 		if ((recvbuf[0] & 0x10) == 0x10) && ((recvbuf[1] & 0x80) == 0) {
@@ -870,7 +896,11 @@ func (v *VoiceConnection) reconnect() {
 	v.reconnecting = true
 	v.Unlock()
 
-	defer func() { v.reconnecting = false }()
+	defer func() {
+		v.Lock()
+		v.reconnecting = false
+		v.Unlock()
+	}()
 
 	// Close any currently open connections
 	v.Close()
