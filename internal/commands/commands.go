@@ -98,7 +98,6 @@ func respondEmbed(s *discordgo.Session, i *discordgo.Interaction, e *discordgo.M
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Embeds: []*discordgo.MessageEmbed{e},
-			Flags:  discordgo.MessageFlagsEphemeral,
 		},
 	})
 }
