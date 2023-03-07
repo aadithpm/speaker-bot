@@ -30,7 +30,8 @@
         "Europa",
         "Nessus",
         "The Throne World",
-        "The Cosmodrome"
+        "The Cosmodrome",
+        "Mars"
     ],
     "content_rotation": [
         {
@@ -39,6 +40,14 @@
             "comments": "",
             "threat": 2,
             "shields": [0, 1, 2],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Heist Battleground",
+            "location": 6,
+            "comments": "",
+            "threat": 2,
+            "shields": [],
             "champions": [1, 2]
         }
     ],

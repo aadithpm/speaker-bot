@@ -94,6 +94,14 @@
             "threat": 3,
             "shields": [0],
             "champions": [0, 2]
+        },
+        {
+            "name": "Chamber of Starlight",
+            "location": 5,
+            "comments": "",
+            "threat": 2,
+            "shields": [0, 2],
+            "champions": [0, 2]
         }
     ]
 }
