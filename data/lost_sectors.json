@@ -102,6 +102,14 @@
             "threat": 2,
             "shields": [0, 2],
             "champions": [0, 2]
+        },
+        {
+            "name": "Perdition",
+            "location": 2,
+            "comments": "",
+            "threat": 1,
+            "shields": [0, 1],
+            "champions": [0, 1]
         }
     ]
 }
