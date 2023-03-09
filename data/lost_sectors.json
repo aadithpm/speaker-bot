@@ -110,6 +110,14 @@
             "threat": 1,
             "shields": [0, 1],
             "champions": [0, 1]
+        },
+        {
+            "name": "Bunker E15",
+            "location": 2,
+            "comments": "",
+            "threat": 0,
+            "shields": [0],
+            "champions": [0, 1]
         }
     ]
 }
