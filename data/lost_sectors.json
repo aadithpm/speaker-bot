@@ -118,6 +118,14 @@
             "threat": 0,
             "shields": [0],
             "champions": [0, 1]
+        },
+        {
+            "name": "The Conflux",
+            "location": 3,
+            "comments": "",
+            "threat": 2,
+            "shields": [0],
+            "champions": [1, 2]
         }
     ]
 }
