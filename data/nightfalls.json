@@ -31,7 +31,8 @@
         "Nessus",
         "The Throne World",
         "The Cosmodrome",
-        "Mars"
+        "Mars",
+        "Neomuna"
     ],
     "content_rotation": [
         {
@@ -49,6 +50,14 @@
             "threat": 2,
             "shields": [],
             "champions": [1, 2]
+        },
+        {
+            "name": "Hypernet Current",
+            "location": 7,
+            "comments": "",
+            "threat": 1,
+            "shields": [2, 4],
+            "champions": [0, 2]
         }
     ],
     "gear_rotation": [
