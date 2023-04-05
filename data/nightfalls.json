@@ -1,12 +1,14 @@
 {
     "start_date": "2023-02-28T17:00:00.000Z",
-    "rotation_complete": false,
+    "rotation_complete": true,
     "gear_list": [
         "Hung Jury SR4",
         "Mindbender's Ambition",
         "Wendigo GL3",
-        "Duty Bound",
         "The Militia's Birthright",
+        "Buzzard",
+        "The SWARM",
+        "Duty Bound",
         "Horror's Least",
         "Silicon Neuroma",
         "???"
@@ -59,6 +61,30 @@
             "threat": 1,
             "shields": [2, 4],
             "champions": [0, 2]
+        },
+        {
+            "name": "Arms Dealer",
+            "location": 0,
+            "comments": "",
+            "threat": 2,
+            "shields": [0, 1, 2],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Glassway",
+            "location": 2,
+            "comments": "",
+            "threat": 0,
+            "shields": [0, 1, 2],
+            "champions": [0, 1]
+        },
+        {
+            "name": "Lake of Shadows",
+            "location": 0,
+            "comments": "",
+            "threat": 1,
+            "shields": [0, 1, 2],
+            "champions": [1, 2]
         }
     ],
     "gear_rotation": [
