@@ -1,6 +1,6 @@
 {
-    "start_date": "2023-02-28T17:00:00.000Z",
-    "rotation_complete": true,
+    "start_date": "2023-05-23T17:00:00.000Z",
+    "rotation_complete": false,
     "gear_list": [
         "Exotic Chestpieces",
         "Exotic Helmets",
@@ -40,52 +40,46 @@
     ],
     "content_rotation": [
         {
-            "name": "Thrilladome",
-            "location": 7,
+            "name": "K1 Revelation",
+            "location": 1,
             "comments": "",
-            "threat": 0,
-            "shields": [0, 1],
-            "champions": [0, 1]
-        },
-        {
-            "name": "Hydroponics Delta",
-            "location": 7,
-            "comments": "",
-            "threat": 0,
-            "shields": [],
-            "champions": [1, 2]
-        },
-        {
-            "name": "Gilded Percept",
-            "location": 7,
-            "comments": "",
-            "threat": 1,
-            "shields": [0, 2],
-            "champions": [1, 2]
-        },
-        {
-            "name": "Excavation Site XII",
-            "location": 0,
-            "comments": "",
-            "threat": 2,
             "shields": [1],
             "champions": [1, 2]
         },
         {
-            "name": "Skydock IV",
-            "location": 0,
+            "name": "K1 Crew Quarters",
+            "location": 1,
             "comments": "",
-            "threat": 2,
-            "shields": [0],
+            "shields": [1],
             "champions": [1, 2]
         },
         {
-            "name": "The Quarry",
-            "location": 0,
+            "name": "K1 Logistics",
+            "location": 1,
             "comments": "",
-            "threat": 0,
+            "shields": [1, 2],
+            "champions": [0, 1]
+        },
+        {
+            "name": "K1 Communion",
+            "location": 1,
+            "comments": "",
             "shields": [0, 2],
-            "champions": [1, 2]
+            "champions": [0, 1]
+        },
+        {
+            "name": "Sepulcher",
+            "location": 4,
+            "comments": "",
+            "shields": [1, 2],
+            "champions": [1, 2, 4]
+        },
+        {
+            "name": "Extraction",
+            "location": 4,
+            "comments": "",
+            "shields": [0, 1],
+            "champions": [0, 2, 4]
         },
         {
             "name": "Aphelion's Rest",
@@ -104,28 +98,28 @@
             "champions": [0, 2]
         },
         {
-            "name": "Perdition",
-            "location": 2,
+            "name": "Bay of Drowned Wishes",
+            "location": 5,
             "comments": "",
             "threat": 1,
-            "shields": [0, 1],
-            "champions": [0, 1]
+            "shields": [0],
+            "champions": [0, 2]
         },
         {
-            "name": "Bunker E15",
-            "location": 2,
+            "name": "Veles Labyrinth",
+            "location": 5,
+            "comments": "",
+            "threat": 1,
+            "shields": [1, 2],
+            "champions": [1, 2]
+        },
+        {
+            "name": "Exodus Garden 2A",
+            "location": 5,
             "comments": "",
             "threat": 0,
             "shields": [0],
             "champions": [0, 1]
-        },
-        {
-            "name": "The Conflux",
-            "location": 3,
-            "comments": "",
-            "threat": 2,
-            "shields": [0],
-            "champions": [1, 2]
         }
     ]
 }

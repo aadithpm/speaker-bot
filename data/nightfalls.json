@@ -1,5 +1,5 @@
 {
-    "start_date": "2023-02-28T17:00:00.000Z",
+    "start_date": "2023-05-23T17:00:00.000Z",
     "rotation_complete": true,
     "gear_list": [
         "Hung Jury SR4",
@@ -11,6 +11,8 @@
         "Duty Bound",
         "Horror's Least",
         "Silicon Neuroma",
+        "Braytech Osprey",
+        "Loaded Question",
         "???"
     ],
     "element_list": [
@@ -35,64 +37,29 @@
         "The Throne World",
         "The Cosmodrome",
         "Mars",
-        "Neomuna"
+        "Neomuna",
+        "Dreaming City"
     ],
     "content_rotation": [
         {
-            "name": "Proving Grounds",
-            "location": 3,
+            "name": "The Devils' Lair",
+            "location": 5,
             "comments": "",
-            "threat": 2,
+            "threat": 1,
             "shields": [0, 1, 2],
             "champions": [1, 2]
         },
         {
-            "name": "Heist Battleground",
-            "location": 6,
-            "comments": "",
-            "threat": 2,
-            "shields": [],
-            "champions": [1, 2]
-        },
-        {
-            "name": "Hypernet Current",
-            "location": 7,
+            "name": "The Corrupted",
+            "location": 8,
             "comments": "",
             "threat": 1,
-            "shields": [2, 4],
+            "shields": [0, 1, 2],
             "champions": [0, 2]
-        },
-        {
-            "name": "Arms Dealer",
-            "location": 0,
-            "comments": "",
-            "threat": 2,
-            "shields": [0, 1, 2],
-            "champions": [1, 2]
-        },
-        {
-            "name": "Glassway",
-            "location": 2,
-            "comments": "",
-            "threat": 0,
-            "shields": [0, 1, 2],
-            "champions": [0, 1]
-        },
-        {
-            "name": "Lake of Shadows",
-            "location": 0,
-            "comments": "",
-            "threat": 1,
-            "shields": [0, 1, 2],
-            "champions": [1, 2]
         }
     ],
     "gear_rotation": [
-        0,
-        1,
-        2,
-        3,
         4,
-        5
+        0
     ]
 }

@@ -1,27 +1,22 @@
 {
-    "start_date": "2023-02-28T17:00:00.000Z",
+    "start_date": "2023-05-23T17:00:00.000Z",
     "location_list": [
         "Dreaming City",
         "The Moon",
         "Legends",
-        "Eternity"
+        "Eternity",
+        "Mars"
     ],
     "content_rotation": [
         {
-            "name": "Prophecy",
-            "location": 2,
-            "master_available": false,
-            "comments": ""
-        },
-        {
-            "name": "Grasp of Avarice",
-            "location": 3,
+            "name": "Duality",
+            "location": 1,
             "master_available": true,
             "comments": ""
         },
         {
-            "name": "Duality",
-            "location": 1,
+            "name": "Spire of the Watcher",
+            "location": 4,
             "master_available": true,
             "comments": ""
         },
@@ -36,6 +31,18 @@
             "location": 1,
             "master_available": false,
             "comments": ""
-        }        
+        },
+        {
+            "name": "Prophecy",
+            "location": 2,
+            "master_available": false,
+            "comments": ""
+        },
+        {
+            "name": "Grasp of Avarice",
+            "location": 3,
+            "master_available": true,
+            "comments": ""
+        }
     ]
 }
