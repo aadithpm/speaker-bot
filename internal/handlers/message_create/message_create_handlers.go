@@ -60,7 +60,7 @@ func alertFortniteToChannel(s *discordgo.Session, m *discordgo.MessageCreate) {
 }
 
 func alertRatio(s *discordgo.Session, m *discordgo.MessageCreate) {
-	msg := fmt.Sprintf(`%v`, FortniteGif)
+	msg := fmt.Sprintf(`%v`, RhulkGif)
 	r, _ := regexp.Compile(`(?i)ratio`)
 	res := r.MatchString(m.Content)
 

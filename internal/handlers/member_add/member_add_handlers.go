@@ -29,7 +29,7 @@ func sendWelcomeMessage(s *discordgo.Session, m *discordgo.GuildMemberAdd) {
 	// Send a welcome message
 	tc, err := utils.GetChannelByName(c, "welcome-wagon")
 	if err != nil {
-		log.Warnf("error getting channel name %v: %v", err)
+		log.Warnf("error getting channel name %v: %v", "welcome-wagon", err)
 	}
 
 	msg := fmt.Sprintf("Hello <@%s>, welcome to the ARCH server! Please review <#786618669408976936> and register with <#785909633352466442> with the `/register` command. You can view currently available LFGs at <#940341727007498240>. Feel free to join them or create new ones!", m.User.ID)
