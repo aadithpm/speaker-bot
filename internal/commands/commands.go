@@ -18,9 +18,6 @@ const (
 )
 
 var commands []SpeakerCommand = []SpeakerCommand{
-	NewLostSectorCommand(),
-	NewLostSectorListCommand(),
-	NewNightfallCommand(),
 	NewDungeonCommand(),
 	NewRaidCommand(),
 	NewCoolnessCommand(),
