@@ -44,8 +44,8 @@ func main() {
 	usd := discordgo.UpdateStatusData{
 		Activities: []*discordgo.Activity{
 			{
-				Name: "Ghaul",
-				Type: 0,
+				Name: "~SIVA.MEM.CL009",
+				Type: 4,
 			},
 		},
 	}

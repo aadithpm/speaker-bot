@@ -13,7 +13,7 @@
             "name": "Last Wish",
             "location": 0,
             "master_available": false,
-            "craftable": false,
+            "craftable": true,
             "comments": ""
         },
         {
