@@ -5,9 +5,17 @@
         "The Moon",
         "Europa",
         "Legends",
-        "Throne World"
+        "Throne World",
+        "Neptune"
     ],
     "content_rotation": [
+        {
+            "name": "Root of Nightmares",
+            "location": 5,
+            "master_available": true,
+            "craftable": true,
+            "comments": ""
+        },
         {
             "name": "Last Wish",
             "location": 0,
