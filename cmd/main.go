@@ -44,8 +44,9 @@ func main() {
 	usd := discordgo.UpdateStatusData{
 		Activities: []*discordgo.Activity{
 			{
-				Name: "~SIVA.MEM.CL009",
-				Type: 4,
+				Name:  "THREAT ASSESSMENT\\ASSESSED//RESULT//QUOTA EXCEEDED",
+				Type:  4,
+				State: "SIVA.MEM.WB010",
 			},
 		},
 	}
