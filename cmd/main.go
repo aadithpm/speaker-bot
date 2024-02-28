@@ -37,7 +37,7 @@ func main() {
 
 	err := Session.Open()
 	if err != nil {
-		log.Fatal("error opening connection to Discord: %v\n", err)
+		log.Fatalf("error opening connection to Discord: %v\n", err)
 		os.Exit(1)
 	}
 

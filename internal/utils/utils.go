@@ -61,3 +61,12 @@ func GetTimeDifferenceInDaysFrom(t time.Time, s time.Time) (diff int) {
 func GetTimeDifferenceInWeeks(t time.Time) (diff int) {
 	return GetTimeDifferenceInDays(t) / 7
 }
+
+// GetOptionsMap Converts Discord command options slice to map
+func GetOptionsMap(o []*discordgo.ApplicationCommandInteractionDataOption) (optionsMap map[string]*discordgo.ApplicationCommandInteractionDataOption) {
+	optionsMap = make(map[string]*discordgo.ApplicationCommandInteractionDataOption, len(o))
+	for _, opt := range o {
+		optionsMap[opt.Name] = opt
+	}
+	return optionsMap
+}

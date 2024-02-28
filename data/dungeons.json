@@ -1,11 +1,12 @@
 {
-    "start_date": "2023-08-22T17:00:00.000Z",
+    "start_date": "2023-11-28T17:00:00.000Z",
     "location_list": [
         "Dreaming City",
         "The Moon",
         "Legends",
         "Eternity",
-        "Mars"
+        "Mars",
+        "The H.E.L.M"
     ],
     "content_rotation": [
         {
@@ -41,6 +42,12 @@
         {
             "name": "Grasp of Avarice",
             "location": 3,
+            "master_available": true,
+            "comments": ""
+        },
+        {
+            "name": "Ghosts of the Deep",
+            "location": 5,
             "master_available": true,
             "comments": ""
         }

@@ -15,12 +15,14 @@ const (
 	Dungeon        string = "dungeon"
 	Raid           string = "raid"
 	Coolness       string = "cool"
+	Ai             string = "ai"
 )
 
 var commands []SpeakerCommand = []SpeakerCommand{
 	NewDungeonCommand(),
 	NewRaidCommand(),
 	NewCoolnessCommand(),
+	NewAiCommand(),
 }
 
 var commandMappings map[string]interface{} = map[string]interface{}{}
@@ -76,26 +78,20 @@ func AddHandler(s *discordgo.Session) {
 
 func respondAck(s *discordgo.Session, i *discordgo.Interaction) {
 	s.InteractionRespond(i, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponsePong,
+		Type: discordgo.InteractionResponseDeferredChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{},
 	})
 }
 
 func respondMessage(s *discordgo.Session, i *discordgo.Interaction, msg string) {
-	s.InteractionRespond(i, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionResponseData{
-			Content: msg,
-		},
+	s.InteractionResponseEdit(i, &discordgo.WebhookEdit{
+		Content: &msg,
 	})
 }
 
 func respondEmbed(s *discordgo.Session, i *discordgo.Interaction, e *discordgo.MessageEmbed) {
-	s.InteractionRespond(i, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionResponseData{
-			Embeds: []*discordgo.MessageEmbed{e},
-		},
+	s.InteractionResponseEdit(i, &discordgo.WebhookEdit{
+		Embeds: &[]*discordgo.MessageEmbed{e},
 	})
 }
 
